@@ -39,7 +39,7 @@ class Commander
 	
 	
 	def authorized?(m)
-		@authorized_users = ["p137", "adrian17", "daaave", "shibu", "Ivarpe", "Kono_Dio_da", "Salem"]
+		@authorized_users = ["your_nicks_go_here"]
 		return true if @authorized_users.include? m.user.nick or m.user.opped?
 		return false
 	end

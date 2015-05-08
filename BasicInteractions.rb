@@ -20,7 +20,7 @@ class BasicInteractions
 	end
 	
 	def die(m)
-		m.channel.kick(m.user, reason = "go awai") unless m.user.name == "p137"
+		m.channel.kick(m.user, reason = "go awai") unless m.user.name == "your_name_goes_here"
 	end
 	
 end
