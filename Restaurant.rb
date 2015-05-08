@@ -5,7 +5,7 @@ class Restaurant
 	
 	match /dish (.+)/, method: :search
 	match /add (.+) (\d+\.\d+)/, method: :add
-	match /random_dish/, method: :random_dish
+	match 'random_dish', method: :random_dish
 	match 'hours', method: :hours
 	match 'load', method: :load_dishes
 	
@@ -22,10 +22,10 @@ class Restaurant
 	end
 	
 	def add(m, dish_name, dish_value)
-		thangdb = File.open('restaurantdb.txt', 'a')
-		thangdb << "\n#{dish_name}, #{dish_value}"
+		restaurantdb = File.open('restaurant.db', 'a')
+		restaurantdb << "\n#{dish_name}, #{dish_value}"
 		m.reply "Appended new entry: #{dish_name} costing #{dish_value}"
-		thangdb.close
+		restaurantdb.close
 		dishreload
 	end
 	
@@ -60,8 +60,8 @@ end
 
 def dishreload
 	$dishes.clear
-	thangdb = IO.readlines('restaurant.db')
-	thangdb.each do |line|
+	restaurantdb = IO.readlines('restaurant.db')
+	restaurantdb.each do |line|
 		temp = line.chomp.split(", ").to_a
 		$dishes[temp[0]] = temp[1]
 	end
